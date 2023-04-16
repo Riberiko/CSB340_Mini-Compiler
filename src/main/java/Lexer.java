@@ -1,10 +1,9 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Lexer {
     private int line;
@@ -122,7 +121,9 @@ public class Lexer {
 
     char getNextChar() {
         // get next character
-        return this.chr;
+        //TODO : Verify if it actually works
+        position++;
+        return s.charAt(position);
     }
 
     String printTokens() {
@@ -138,12 +139,12 @@ public class Lexer {
         return sb.toString();
     }
 
-    static void outputToFile(String result) {
+    static void outputToFile(String result, String fileName) {
         try {
-            FileWriter myWriter = new FileWriter("src/main/resources/hello.lex");
+            FileWriter myWriter = new FileWriter("src/main/resources/" + fileName + ".lex");
             myWriter.write(result);
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            System.out.println(String.format("Successfully wrote to the file %s.lex.", fileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -151,23 +152,34 @@ public class Lexer {
 
     public static void main(String[] args) {
         if (1==1) {
-            try {
+                File[] files = new File("src/main/resources").listFiles(new FileFilter() {
+                    @Override
+                    public boolean accept(File file) {
+                        return !file.toString().endsWith(".lex") && !file.toString().endsWith(".par");
+                    }
+                });
 
-                File f = new File("src/main/resources/hello.t");
-                Scanner s = new Scanner(f);
-                String source = " ";
-                String result = " ";
-                while (s.hasNext()) {
-                    source += s.nextLine() + "\n";
+                Scanner s;
+                String source = "";
+                String result = "";
+                Lexer l;
+                for(File file : files){
+                    try {
+                        s = new Scanner(file);
+
+                        while (s.hasNext()) {
+                            source += s.nextLine() + "\n";
+                        }
+                        l = new Lexer(source);
+                        result = l.printTokens();
+
+                        //outputToFile(result, file.getName());
+                    } catch (FileNotFoundException e) {
+                        error(-1, -1, "Exception: " + e.getMessage());
+                    }
+                    source = "";
+                    result = "";
                 }
-                Lexer l = new Lexer(source);
-                result = l.printTokens();
-
-                outputToFile(result);
-
-            } catch(FileNotFoundException e) {
-                error(-1, -1, "Exception: " + e.getMessage());
-            }
         } else {
             error(-1, -1, "No args");
         }
