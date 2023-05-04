@@ -7,60 +7,54 @@ import java.util.Scanner;
 
 public class LexerTest {
 
-    Lexer l;
-
-    Scanner in;
     String expected;
     String actual;
-
 
     @Test
     void countTest()
     {
-        expected = getExpected("count");
-        actual = getActual("count", "c");
+        expected = ExpectedAndActual.getExpected("count", "lex");
+        actual = ExpectedAndActual.getActualLexer("count", "c");
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     void helloTest()
     {
-        expected = getExpected("hello");
-        actual = getActual("hello", "t");
+        expected = ExpectedAndActual.getExpected("hello", "lex");
+        actual = ExpectedAndActual.getActualLexer("hello", "t");
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void primeTest()
+    {
+        expected = ExpectedAndActual.getExpected("prime", "lex");
+        actual = ExpectedAndActual.getActualLexer("prime", "c");
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     void loopTest()
     {
-        expected = getExpected("loop");
-        actual = getActual("loop", "py");
+        expected = ExpectedAndActual.getExpected("loop", "lex");
+        actual = ExpectedAndActual.getActualLexer("loop", "py");
         Assertions.assertEquals(expected, actual);
     }
 
-    private String getExpected(String fileName)
+    @Test
+    void bottleTest()
     {
-        StringBuilder sb = new StringBuilder();
-        try {
-            in = new Scanner(new File("src/test/resources/"+fileName+".lex"));
-            while(in.hasNextLine()) sb.append(in.nextLine()).append('\n');
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return sb.toString().strip();
+        expected = ExpectedAndActual.getExpected("99bottles", "lex");
+        actual = ExpectedAndActual.getActualLexer("99bottles", "c");
+        Assertions.assertEquals(expected, actual);
     }
 
-    private String getActual(String fileName, String extension)
+    @Test
+    void fizzbuzzTest()
     {
-        StringBuilder sb = new StringBuilder();
-        try{
-            in = new Scanner(new File("src/main/resources/"+fileName+"."+extension));
-            while(in.hasNextLine()) sb.append(in.nextLine()).append('\n');
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        l = new Lexer(sb.toString());
-
-        return l.printTokens().strip();
+        expected = ExpectedAndActual.getExpected("fizzbuzz", "lex");
+        actual = ExpectedAndActual.getActualLexer("fizzbuzz", "c");
+        Assertions.assertEquals(expected, actual);
     }
 }

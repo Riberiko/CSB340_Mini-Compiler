@@ -202,10 +202,12 @@ public class Lexer {
     Token operator(int line, int pos){
         if(chr == '-')
         {
+            char prv = chr;
+            int i = 0;
             getNextChar();
-            while(Character.isWhitespace(chr)) //determining if we are dealing with a negative number or a subtraction operator
-            { if(chr == '\n') {this.line++; this.pos = 0;} getNextChar();}
-            return new Token( (isDigit(chr)) ? TokenType.Op_negate : TokenType.Op_subtract, "-", line, pos);
+            while(Character.isWhitespace(prv)) //determining if we are dealing with a negative number or a subtraction operator
+            prv = s.charAt(position-(++i));
+            return new Token( (prv == '=') ? TokenType.Op_negate : TokenType.Op_subtract, "-", line, pos);
         }
 
         switch (chr){
