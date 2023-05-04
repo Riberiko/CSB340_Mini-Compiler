@@ -14,7 +14,7 @@ public class LexerTest {
     void countTest()
     {
         expected = ExpectedAndActual.getExpected("count", "lex");
-        actual = ExpectedAndActual.getActual("count", "c");
+        actual = ExpectedAndActual.getActualLexer("count", "c");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -22,7 +22,7 @@ public class LexerTest {
     void helloTest()
     {
         expected = ExpectedAndActual.getExpected("hello", "lex");
-        actual = ExpectedAndActual.getActual("hello", "t");
+        actual = ExpectedAndActual.getActualLexer("hello", "t");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -30,7 +30,7 @@ public class LexerTest {
     void primeTest()
     {
         expected = ExpectedAndActual.getExpected("prime", "lex");
-        actual = ExpectedAndActual.getActual("prime", "c");
+        actual = ExpectedAndActual.getActualLexer("prime", "c");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -38,7 +38,7 @@ public class LexerTest {
     void loopTest()
     {
         expected = ExpectedAndActual.getExpected("loop", "lex");
-        actual = ExpectedAndActual.getActual("loop", "py");
+        actual = ExpectedAndActual.getActualLexer("loop", "py");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -46,7 +46,7 @@ public class LexerTest {
     void bottleTest()
     {
         expected = ExpectedAndActual.getExpected("99bottles", "lex");
-        actual = ExpectedAndActual.getActual("99bottles", "c");
+        actual = ExpectedAndActual.getActualLexer("99bottles", "c");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -54,7 +54,7 @@ public class LexerTest {
     void fizzbuzzTest()
     {
         expected = ExpectedAndActual.getExpected("fizzbuzz", "lex");
-        actual = ExpectedAndActual.getActual("fizzbuzz", "c");
+        actual = ExpectedAndActual.getActualLexer("fizzbuzz", "c");
         Assertions.assertEquals(expected, actual);
     }
 }

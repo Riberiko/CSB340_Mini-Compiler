@@ -10,7 +10,7 @@ public class ParserTest {
     void countTest()
     {
         expected = ExpectedAndActual.getExpected("count", "par");
-        actual = ExpectedAndActual.getActualLexer("count", "c");
+        actual = ExpectedAndActual.getActualParser("count", "c");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -18,7 +18,7 @@ public class ParserTest {
     void helloTest()
     {
         expected = ExpectedAndActual.getExpected("hello", "par");
-        actual = ExpectedAndActual.getActualLexer("hello", "t");
+        actual = ExpectedAndActual.getActualParser("hello", "t");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -26,7 +26,7 @@ public class ParserTest {
     void primeTest()
     {
         expected = ExpectedAndActual.getExpected("prime", "par");
-        actual = ExpectedAndActual.getActualLexer("prime", "c");
+        actual = ExpectedAndActual.getActualParser("prime", "c");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -34,7 +34,7 @@ public class ParserTest {
     void loopTest()
     {
         expected = ExpectedAndActual.getExpected("loop", "par");
-        actual = ExpectedAndActual.getActualLexer("loop", "py");
+        actual = ExpectedAndActual.getActualParser("loop", "py");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -42,7 +42,7 @@ public class ParserTest {
     void bottleTest()
     {
         expected = ExpectedAndActual.getExpected("99bottles", "par");
-        actual = ExpectedAndActual.getActualLexer("99bottles", "c");
+        actual = ExpectedAndActual.getActualParser("99bottles", "c");
         Assertions.assertEquals(expected, actual);
     }
 
@@ -50,7 +50,7 @@ public class ParserTest {
     void fizzbuzzTest()
     {
         expected = ExpectedAndActual.getExpected("fizzbuzz", "par");
-        actual = ExpectedAndActual.getActualLexer("fizzbuzz", "c");
+        actual = ExpectedAndActual.getActualParser("fizzbuzz", "c");
         Assertions.assertEquals(expected, actual);
     }
 }
