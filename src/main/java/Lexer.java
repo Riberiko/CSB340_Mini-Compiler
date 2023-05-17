@@ -340,6 +340,7 @@ public class Lexer {
         assert files != null;
         for(File file : files){
             try {
+//                System.out.println(file.toString());
                 s = new Scanner(file);
                 while (s.hasNext()) {
                     source += s.nextLine() + "\n";
