@@ -61,56 +61,15 @@ class Parser {
      *
      * @param result The string to write to a file.
      */
-    private static void outputToFile(String result) {
+    private static void outputToFile(String result, String fileName) {
         try {
-            FileWriter myWriter = new FileWriter("src/main/resources/hello.par");
+            FileWriter myWriter = new FileWriter("src/main/resources/" + fileName.substring(0, fileName.indexOf('.')) + ".par");
             myWriter.write(result);
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            System.out.printf("Successfully wrote to the file %s.lex.%n", fileName);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    /**
-     * Creates a map between strings and corresponding Token Types
-     *
-     * @return A HashMap of Token Types
-     */
-    private static HashMap<String, TokenType> createTokenMap() {
-        HashMap<String, TokenType> map = new HashMap<>();
-        map.put("End_of_input", TokenType.End_of_input);
-        map.put("Op_multiply", TokenType.Op_multiply);          //Expression op
-        map.put("Op_divide", TokenType.Op_divide);              //Expression op
-        map.put("Op_mod", TokenType.Op_mod);                    //Expression op
-        map.put("Op_add", TokenType.Op_add);                    //Expression op
-        map.put("Op_subtract", TokenType.Op_subtract);          //Expression op
-        map.put("Op_negate", TokenType.Op_negate);              //Expression op
-        map.put("Op_not", TokenType.Op_not);                    //Expression op
-        map.put("Op_less", TokenType.Op_less);                  //Expression op
-        map.put("Op_lessequal", TokenType.Op_lessequal);        //Expression op
-        map.put("Op_greater", TokenType.Op_greater);            //Expression op
-        map.put("Op_greaterequal", TokenType.Op_greaterequal);  //Expression op
-        map.put("Op_equal", TokenType.Op_equal);                //Expression op
-        map.put("Op_notequal", TokenType.Op_notequal);          //Expression op
-        map.put("Op_assign", TokenType.Op_assign);              //Expression op: Assignment
-        map.put("Op_and", TokenType.Op_and);                    //Expression op
-        map.put("Op_or", TokenType.Op_or);                      //Expression op
-        map.put("Keyword_if", TokenType.Keyword_if);            //Statement op
-        map.put("Keyword_else", TokenType.Keyword_else);        //Statement op
-        map.put("Keyword_while", TokenType.Keyword_while);      //Statement op
-        map.put("Keyword_print", TokenType.Keyword_print);      //Statement op
-        map.put("Keyword_putc", TokenType.Keyword_putc);        //Statement op???
-        map.put("LeftParen", TokenType.LeftParen);              //Starter token
-        map.put("LeftBrace", TokenType.LeftBrace);              //Starter token
-        map.put("RightParen", TokenType.RightParen);            //End token
-        map.put("RightBrace", TokenType.RightBrace);            //End token
-        map.put("Semicolon", TokenType.Semicolon);              //End token
-        map.put("Comma", TokenType.Comma);
-        map.put("Identifier", TokenType.Identifier);
-        map.put("Integer", TokenType.Integer);
-        map.put("String", TokenType.String);
-        return map;
     }
 
     /**
@@ -148,26 +107,33 @@ class Parser {
 
     /**
      * Main function. Sets up things and drives the program.
-     * TODO: Fix the 1==1
      * TODO: Add args parsing
      * TODO: Refactor some of this code into other functions/constructors
      *
      * @param args Unused.
      */
     public static void main(String[] args) {
-        if (1 == 1) {
-            try {
-                String value, token;
-                String result = " ";
-                StringBuilder sb = new StringBuilder();
-                int line, pos;
-                Token t;
-                boolean found;
-                List<Token> list = new ArrayList<>();
-                Map<String, TokenType> str_to_tokens = createTokenMap();
+        try {
+            String value, token;
+            String result = " ";
+            StringBuilder sb = new StringBuilder();
+            int line, pos;
+            Token t;
+            boolean found;
+            List<Token> list = new ArrayList<>();
+            Map<String, TokenType> str_to_tokens = new HashMap<>();
+            Arrays.stream(TokenType.values()).forEach(val -> str_to_tokens.put(val.toString(), val));
 
-                //Creates the list of tokens for the parser.
-                Scanner s = new Scanner(new File("src/main/resources/hello.lex"));
+            Scanner s;
+            File[] files = new File("src/test/resources").listFiles(file -> file.toString().endsWith(".lex"));
+
+            //TODO : Uncomment line bellow to test specific files
+            //files = new File[]{new File("src/test/resources/hello.lex")};
+
+            for(File file : files)
+            {
+                s = new Scanner(file);
+
                 String source = " ";
                 while (s.hasNext()) {
                     String str = s.nextLine();
@@ -197,12 +163,10 @@ class Parser {
                  */
                 Parser p = new Parser(list);
                 result = p.printAST(p.parse(), sb);
-                outputToFile(result);
-            } catch (Exception e) {
-                error(-1, -1, "Exception: " + e.getMessage());
+                outputToFile(result, file.getName());
             }
-        } else {
-            error(-1, -1, "No args");
+        } catch (Exception e) {
+            error(-1, -1, "Exception: " + e.getMessage());
         }
     }
 
@@ -287,7 +251,7 @@ class Parser {
      *
      * @return A node
      */
-    private Node parse() {
+    Node parse() {
         Node node = null;
         nextToken();
         while (currentToken.getTokentype() != TokenType.End_of_input) {
@@ -364,21 +328,7 @@ class Parser {
      */
     private boolean opCheck() {
         switch (nextTokenType()) {
-            case Op_add:
-            case Op_and:
-            case Op_divide:
-            case Op_equal:
-            case Op_greater:
-            case Op_greaterequal:
-            case Op_less:
-            case Op_lessequal:
-            case Op_mod:
-            case Op_multiply:
-            case Op_negate:
-            case Op_not:
-            case Op_notequal:
-            case Op_or:
-            case Op_subtract:
+            case Op_add, Op_and, Op_divide, Op_equal, Op_greater, Op_greaterequal, Op_less, Op_lessequal,Op_mod, Op_multiply, Op_negate, Op_not, Op_notequal, Op_or, Op_subtract:
                 return true;
             //Other types are realistically an error.
             default:
@@ -402,9 +352,7 @@ class Parser {
                 } else {
                     return node;
                 }
-            case Identifier:
-            case Integer:
-            case String:
+            case Identifier, Integer, String:
                 if (opCheck()) {
                     nextToken();
                     return Node.makeNode(currentToken, typeMap.get(currentToken.getTokentype()), Node.makeNode(prevToken, typeMap.get(prevToken.getTokentype())), expressionParse());
@@ -412,19 +360,10 @@ class Parser {
                     nextToken();
                     return new Node(prevToken, typeMap.get(prevToken.getTokentype()));
                 }
-            case Op_assign:
-                assignmentParse();
-            case End_of_input:
-            case RightParen:
-            case RightBrace:
-            case Semicolon:
-            case Comma:         //I'm actually not sure about comma here, should probably call expression again.
+            case Op_assign: assignmentParse();
+            case End_of_input, RightParen, RightBrace, Semicolon, Comma:         //I'm actually not sure about comma here, should probably call expression again.
                 error(currentToken.getLine(), currentToken.getPos(), "Unexpected " + currentToken.getTokentype() + " found ");
-            case Keyword_if:
-            case Keyword_else:
-            case Keyword_print:
-            case Keyword_putc:
-            case Keyword_while:
+            case Keyword_if, Keyword_else, Keyword_print, Keyword_putc, Keyword_while:
                 error(currentToken.getLine(), currentToken.getPos(), "Unexpected " + currentToken.getTokentype() + " found ");
         }
         return null;
@@ -467,7 +406,7 @@ class Parser {
     /**
      * Enum of the different token types.
      */
-    private enum TokenType {
+    enum TokenType {
         Comma(false, false, false, -1, NodeType.nd_None),
         End_of_input(false, false, false, -1, NodeType.nd_None),
         Identifier(false, false, false, -1, NodeType.nd_Ident),
@@ -650,13 +589,13 @@ class Parser {
      * Static token class.
      * Should probably be in another file and shared with the lexer.
      */
-    private static class Token {
+    static class Token {
         private final TokenType tokentype;
         private final String value;
         private final int line;
         public int pos;
 
-        private Token(TokenType token, String value, int line, int pos) {
+        Token(TokenType token, String value, int line, int pos) {
             this.tokentype = token;
             this.value = value;
             this.line = line;
