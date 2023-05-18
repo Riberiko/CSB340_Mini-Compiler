@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
+
 class Parser {
 
     //List of tokens returned by the lexer
@@ -213,7 +214,6 @@ class Parser {
     private Token nextToken() {
         this.prevToken = currentToken;
         this.currentToken = this.source.get(this.position++);
-        System.out.println("new position: " + position);
         return this.currentToken;
     }
 
@@ -232,11 +232,9 @@ class Parser {
      * @return The root node of the bound expression.
      */
     private Node parentheticalExpression() {
-        System.out.println("Pre (");
         expect("paren_expr", TokenType.LeftParen);
         Node node = expressionParse();
         expect("paren_expr", TokenType.RightParen);
-        System.out.println("Post )");
         return node;
     }
 
@@ -249,7 +247,6 @@ class Parser {
      */
     private boolean expect(String msg, TokenType type) {
         if (this.currentToken.tokentype == type) {
-            System.out.println("Calling next from expect");
             nextToken();
             return true;
         }
@@ -292,10 +289,8 @@ class Parser {
      */
     private Node parse() {
         Node node = null;
-        System.out.println("Calling next from parse");
         nextToken();
         while (currentToken.getTokentype() != TokenType.End_of_input) {
-            System.out.println("In parse, token: " + currentToken.getTokentype());
             node = Node.makeNode(null, NodeType.nd_Sequence, node, statementParse());
             nextToken();
         }
@@ -324,7 +319,6 @@ class Parser {
      * @return The statement node.
      */
     private Node statementParse() {
-        System.out.println("In statement parse, token: " + currentToken.getTokentype());
         Node node = null;
         NodeType nodeType = null;
         switch (currentToken.getTokentype()) {
@@ -333,7 +327,6 @@ class Parser {
             case Keyword_print:
             case Keyword_putc:
             case Keyword_while:
-                System.out.println("Calling next from stmt parse: Keyword");
                 nextToken();
                 return Node.makeNode(prevToken, typeMap.get(prevToken.getTokentype()), expressionParse(), null);
             case LeftBrace:
@@ -341,7 +334,6 @@ class Parser {
             case LeftParen:
                 return parentheticalExpression();
             case Identifier:    //Not confident on this one, last minute changes.
-                System.out.println("Calling next from stmt parse: Ident");
                 nextToken();
                 return expressionParse();
 //                nextToken();
@@ -371,7 +363,6 @@ class Parser {
      * @return If the next token is an operation.
      */
     private boolean opCheck() {
-        System.out.println("Op check, token: " + currentToken.getTokentype() + ", position: " + position);
         switch (nextTokenType()) {
             case Op_add:
             case Op_and:
@@ -401,31 +392,23 @@ class Parser {
      * @return The expression node.
      */
     private Node expressionParse() {
-        System.out.println("In expression parse, token: " + currentToken.getTokentype());
         Node node = null;
         switch (currentToken.getTokentype()) {
             case LeftParen:
-                System.out.println("paren");
                 node = parentheticalExpression();
                 if (opCheck()) {
-                    System.out.println("if?");
-                    System.out.println("Calling next from expr parse: left paren inner");
                     nextToken();
                     return Node.makeNode(currentToken, typeMap.get(currentToken.getTokentype()), node, expressionParse());
                 } else {
-                    System.out.println("Else");
                     return node;
                 }
             case Identifier:
             case Integer:
             case String:
-                System.out.println("String");
                 if (opCheck()) {
-                    System.out.println("Calling next from expr parse: ident op");
                     nextToken();
                     return Node.makeNode(currentToken, typeMap.get(currentToken.getTokentype()), Node.makeNode(prevToken, typeMap.get(prevToken.getTokentype())), expressionParse());
                 } else {
-                    System.out.println("Calling next from expr parse: ident");
                     nextToken();
                     return new Node(prevToken, typeMap.get(prevToken.getTokentype()));
                 }
