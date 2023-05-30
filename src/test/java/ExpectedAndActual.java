@@ -53,7 +53,6 @@ public class ExpectedAndActual {
             while ((lexerT = l.getToken()).tokentype != Lexer.TokenType.End_of_input)
             {
                 lst.add(new Parser.Token(strToMap.get(lexerT.tokentype.toString()), lexerT.value, lexerT.line, lexerT.pos));
-                System.out.println(lst.get(lst.size()-1));
                 if(lst.get(lst.size()-1) == null) throw new RuntimeException("Lexer Token Type was Could not be mapped to a Parser Token Type");
             }
             //gets the end of input token as well and adds to list
