@@ -7,8 +7,6 @@
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ExpectedAndActual.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ExpectedAndActual.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +117,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ParserTest.bottleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MiniCompiler.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ParserTest" />
+      <option name="METHOD_NAME" value="bottleTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ParserTest.countTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -139,23 +147,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserTest.helloTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MiniCompiler.test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ParserTest" />
-      <option name="METHOD_NAME" value="helloTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ParserTest" />
+        <item itemvalue="JUnit.ParserTest.bottleTest" />
+        <item itemvalue="JUnit.ParserTest.fizzbuzzTest" />
         <item itemvalue="JUnit.ParserTest.countTest" />
         <item itemvalue="Application.Parser" />
-        <item itemvalue="JUnit.ParserTest.helloTest" />
-        <item itemvalue="JUnit.ParserTest.fizzbuzzTest" />
       </list>
     </recent_temporary>
   </component>

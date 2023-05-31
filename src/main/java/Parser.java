@@ -213,16 +213,22 @@ class Parser {
             }
             case Keyword_print -> {
                 getNextToken();
-                expect("error start print", TokenType.LeftParen);
-                while (token.tokentype != TokenType.RightParen) {
-                    if (this.token.tokentype == TokenType.String) e = Node.make_node(NodeType.nd_Prts, Node.make_leaf(NodeType.nd_String, token.value));
-                    else if(token.tokentype == TokenType.Identifier) e = Node.make_node(NodeType.nd_Prti, Node.make_leaf(NodeType.nd_Ident, token.value));
-                    else if(token.tokentype == TokenType.Integer) e = Node.make_node(NodeType.nd_Prtc, Node.make_leaf(NodeType.nd_Integer, token.value));
-                    else error(token.line, token.pos, "print not int ident or string");
+                expect("", TokenType.LeftParen);
+                while (1==1) {
+                    if (this.token.tokentype == TokenType.String) {
+                        e = Node.make_node(NodeType.nd_Prts, Node.make_leaf(NodeType.nd_String, this.token.value));
+                        getNextToken();
+
+                    } else {
+                        e = Node.make_node(NodeType.nd_Prti, expr(0), null);
+                    }
+                    t = Node.make_node(NodeType.nd_Sequence, t, e);
+                    if (this.token.tokentype != TokenType.Comma) {
+                        break;
+                    }
                     getNextToken();
-                    if(token.tokentype == TokenType.Comma) getNextToken();
                 }
-                expect("error end print", TokenType.RightParen);
+                expect("Print", TokenType.RightParen);
             }
             case Identifier -> {
                 v = Node.make_leaf(NodeType.nd_Ident, this.token.value);
@@ -306,7 +312,7 @@ class Parser {
         try {
             String value, token;
             String result;
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb;
             int line, pos;
             Token t;
             boolean found;
@@ -321,9 +327,11 @@ class Parser {
 
             for(File file : files)
             {
+                sb = new StringBuilder();
                 s = new Scanner(file);
-                source = " ";
-                result = " ";
+                source = "";
+                result = "";
+                list.clear();
                 System.out.println(String.format("\nParsing File : %s", file.getName()));
 
                 while (s.hasNext()) {
