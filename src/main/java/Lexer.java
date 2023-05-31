@@ -324,7 +324,7 @@ public class Lexer {
      */
     static void outputToFile(String result, String fileName) {
         try {
-            FileWriter myWriter = new FileWriter("src/main/resources/" + fileName + ".lex");
+            FileWriter myWriter = new FileWriter("src/main/output/" + fileName + ".lex");
             myWriter.write(result);
             myWriter.close();
             System.out.printf("Successfully wrote to the file %s.lex.%n", fileName);
@@ -340,7 +340,6 @@ public class Lexer {
         assert files != null;
         for(File file : files){
             try {
-//                System.out.println(file.toString());
                 s = new Scanner(file);
                 while (s.hasNext()) {
                     source += s.nextLine() + "\n";

@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ExpectedAndActual.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/99bottles.lex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/99bottles.par" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/fizzbuzz.lex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/fizzbuzz.par" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/prime.lex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/prime.par" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/prime.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/prime.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/LexerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LexerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ExpectedAndActual.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ExpectedAndActual.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +68,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\GMD\Desktop\NewQuarter\CSB340_Mini-Compiler\src\main\resources" />
       <recent name="C:\Users\GMD\Desktop\NewQuarter\CSB340_Mini-Compiler\src\test\resources" />
       <recent name="C:\Users\GMD\Desktop\NewQuarter\CSB340_Mini-Compiler\src\main\testResources" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -89,7 +80,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LexerTest">
+  <component name="RunManager" selected="JUnit.ParserTest">
     <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Parser" />
       <module name="MiniCompiler.main" />
@@ -119,40 +110,40 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="LexerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LexerTest" />
+      <option name="MAIN_CLASS_NAME" value="ParserTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LexerTest.countTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserTest.countTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LexerTest" />
+      <option name="MAIN_CLASS_NAME" value="ParserTest" />
       <option name="METHOD_NAME" value="countTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LexerTest.fizzbuzzTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserTest.fizzbuzzTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LexerTest" />
+      <option name="MAIN_CLASS_NAME" value="ParserTest" />
       <option name="METHOD_NAME" value="fizzbuzzTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LexerTest.primeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserTest.helloTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LexerTest" />
-      <option name="METHOD_NAME" value="primeTest" />
+      <option name="MAIN_CLASS_NAME" value="ParserTest" />
+      <option name="METHOD_NAME" value="helloTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -160,11 +151,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LexerTest" />
-        <item itemvalue="JUnit.LexerTest.fizzbuzzTest" />
-        <item itemvalue="JUnit.LexerTest.primeTest" />
-        <item itemvalue="JUnit.LexerTest.countTest" />
+        <item itemvalue="JUnit.ParserTest" />
+        <item itemvalue="JUnit.ParserTest.countTest" />
         <item itemvalue="Application.Parser" />
+        <item itemvalue="JUnit.ParserTest.helloTest" />
+        <item itemvalue="JUnit.ParserTest.fizzbuzzTest" />
       </list>
     </recent_temporary>
   </component>
@@ -178,6 +169,8 @@
       <updated>1678159185811</updated>
       <workItem from="1682560259027" duration="315000" />
       <workItem from="1683158997887" duration="5025000" />
+      <workItem from="1684458191262" duration="17000" />
+      <workItem from="1685490452316" duration="7647000" />
     </task>
     <servers />
   </component>
