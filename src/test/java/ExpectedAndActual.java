@@ -38,29 +38,45 @@ public class ExpectedAndActual {
         return new Lexer(sb.toString()).printTokens().strip();
     }
 
-    public static String getActualParser(String fileName, String extension)
+    public static String getActualParser(String fileName)
     {
         StringBuilder result = new StringBuilder();
         try{
             StringBuilder sb = new StringBuilder();
             List<Parser.Token> lst = new ArrayList<>();
-            Lexer.Token lexerT;
+            String value;
+            int pos, line;
+            String token;
+            boolean found;
 
-            in = new Scanner(new File("src/main/resources/"+fileName+"."+extension));
-            while(in.hasNextLine()) sb.append(in.nextLine()+ '\n');
 
-            Lexer l = new Lexer(sb.toString());
-            while ((lexerT = l.getToken()).tokentype != Lexer.TokenType.End_of_input)
-            {
-                lst.add(new Parser.Token(strToMap.get(lexerT.tokentype.toString()), lexerT.value, lexerT.line, lexerT.pos));
-                if(lst.get(lst.size()-1) == null) throw new RuntimeException("Lexer Token Type was Could not be mapped to a Parser Token Type");
+            in = new Scanner(new File("src/main/output/"+fileName+".lex"));
+
+            while (in.hasNext()) {
+                String str = in.nextLine();
+                StringTokenizer st = new StringTokenizer(str);
+                line = Integer.parseInt(st.nextToken());
+                pos = Integer.parseInt(st.nextToken());
+                token = st.nextToken();
+                value = "";
+                while (st.hasMoreTokens()) {
+                    value += st.nextToken() + " ";
+                }
+                found = false;
+                if (strToMap.containsKey(token)) {
+                    found = true;
+                    lst.add(new Parser.Token(strToMap.get(token), value, line, pos));
+                }
+                if (found == false) {
+                    throw new Exception("Token not found: '" + token + "'");
+                }
             }
-            //gets the end of input token as well and adds to list
-            lst.add(new Parser.Token(strToMap.get(lexerT.tokentype.toString()), lexerT.value, lexerT.line, lexerT.pos));
             Parser p = new Parser(lst);
             p.printAST(p.parse(), result);
         } catch (FileNotFoundException e){
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         return result.toString().strip();

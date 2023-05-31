@@ -141,7 +141,7 @@ class Parser {
 
     Node expr(int p) {
         // create nodes for token types such as LeftParen, Op_add, Op_subtract, etc.
-        // be very careful here and be aware of the precendence rules for the AST tree
+        // be very careful here and be aware of the precedence rules for the AST tree
         Node result = null, node;
         switch (token.tokentype)
         {
@@ -149,14 +149,10 @@ class Parser {
                 result = paren_expr();
             }
             case Op_add, Op_subtract, Op_negate -> {
-                TokenType op = this.token.tokentype == TokenType.Op_add ? TokenType.Op_add: TokenType.Op_negate;
+                TokenType op = (token.tokentype == TokenType.Op_add) ? TokenType.Op_add : TokenType.Op_negate;
                 getNextToken();
                 node = expr(op.getPrecedence());
-                if (op == TokenType.Op_add){
-                    result = node;
-                }else{
-                    result = Node.make_node(NodeType.nd_Negate, node);
-                }
+                result = (op == TokenType.Op_add) ? node : Node.make_node(NodeType.nd_Negate, node);
             }
             case Identifier -> {
                 result = Node.make_leaf(NodeType.nd_Ident, this.token.value);
@@ -167,11 +163,12 @@ class Parser {
                 getNextToken();
             }
             default -> {
-                error(this.token.line, this.token.pos, "error");
+                error(this.token.line, this.token.pos, "error with expr");
             }
         }
 
-        while (this.token.tokentype.isBinary()&& this.token.tokentype.getPrecedence() >= p){
+        while (this.token.tokentype.isBinary()&& this.token.tokentype.getPrecedence() >= p)
+        {
             TokenType operation = this.token.tokentype;
             getNextToken();
             int precedence = operation.getPrecedence();
@@ -179,7 +176,6 @@ class Parser {
                 precedence++;
             }
             result = Node.make_node(operation.node_type, result, expr(precedence));
-
         }
         return result;
     }
@@ -199,7 +195,7 @@ class Parser {
 
 
     Node stmt() {
-        Node s, s2, e, v;
+        Node s, s2, e = null, v;
         Node t = null;
 
         switch (token.tokentype)
@@ -217,23 +213,16 @@ class Parser {
             }
             case Keyword_print -> {
                 getNextToken();
-                expect("", TokenType.LeftParen);
-                while (1==1) {
-                    if (this.token.tokentype == TokenType.String) {
-                        e = Node.make_node(NodeType.nd_Prts, Node.make_leaf(NodeType.nd_String, this.token.value));
-                        getNextToken();
-
-                    } else {
-                        e = Node.make_node(NodeType.nd_Prti, expr(0), null);
-                    }
-                    t = Node.make_node(NodeType.nd_Sequence, t, e);
-                    if (this.token.tokentype != TokenType.Comma) {
-                        break;
-                    }
+                expect("error start print", TokenType.LeftParen);
+                while (token.tokentype != TokenType.RightParen) {
+                    if (this.token.tokentype == TokenType.String) e = Node.make_node(NodeType.nd_Prts, Node.make_leaf(NodeType.nd_String, token.value));
+                    else if(token.tokentype == TokenType.Identifier) e = Node.make_node(NodeType.nd_Prti, Node.make_leaf(NodeType.nd_Ident, token.value));
+                    else if(token.tokentype == TokenType.Integer) e = Node.make_node(NodeType.nd_Prtc, Node.make_leaf(NodeType.nd_Integer, token.value));
+                    else error(token.line, token.pos, "print not int ident or string");
                     getNextToken();
+                    if(token.tokentype == TokenType.Comma) getNextToken();
                 }
-                expect("Print", TokenType.RightParen);
-
+                expect("error end print", TokenType.RightParen);
             }
             case Identifier -> {
                 v = Node.make_leaf(NodeType.nd_Ident, this.token.value);
@@ -265,7 +254,7 @@ class Parser {
                 return null;
             }
             default -> {
-                error(this.token.line, this.token.pos, " " + this.token.tokentype);
+                error(this.token.line, this.token.pos, "error in stmt" + this.token.tokentype);
             }
         }
         return t;
@@ -358,7 +347,7 @@ class Parser {
                 }
                 Parser p = new Parser(list);
                 result = p.printAST(p.parse(), sb);
-                outputToFile(result, file.getName().substring(0, file.getName().indexOf('.')));
+                //outputToFile(result, file.getName().substring(0, file.getName().indexOf('.')));
             }
 
         } catch (FileNotFoundException e) {

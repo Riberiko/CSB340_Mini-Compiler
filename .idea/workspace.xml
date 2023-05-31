@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/output/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ExpectedAndActual.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ExpectedAndActual.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,14 +80,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Lexer">
-    <configuration name="Lexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Lexer" />
-      <module name="MiniCompiler.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ParserTest">
     <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Parser" />
       <module name="MiniCompiler.main" />
@@ -144,12 +139,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ParserTest.helloTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MiniCompiler.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ParserTest" />
+      <option name="METHOD_NAME" value="helloTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ParserTest.countTest" />
         <item itemvalue="JUnit.ParserTest" />
-        <item itemvalue="Application.Lexer" />
+        <item itemvalue="JUnit.ParserTest.countTest" />
         <item itemvalue="Application.Parser" />
+        <item itemvalue="JUnit.ParserTest.helloTest" />
         <item itemvalue="JUnit.ParserTest.fizzbuzzTest" />
       </list>
     </recent_temporary>
@@ -165,7 +170,7 @@
       <workItem from="1682560259027" duration="315000" />
       <workItem from="1683158997887" duration="5025000" />
       <workItem from="1684458191262" duration="17000" />
-      <workItem from="1685490452316" duration="3650000" />
+      <workItem from="1685490452316" duration="7647000" />
     </task>
     <servers />
   </component>
