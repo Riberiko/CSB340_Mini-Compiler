@@ -324,7 +324,7 @@ public class Lexer {
      */
     static void outputToFile(String result, String fileName) {
         try {
-            FileWriter myWriter = new FileWriter("src/main/resources/" + fileName + ".lex");
+            FileWriter myWriter = new FileWriter("src/main/output/" + fileName + ".lex");
             myWriter.write(result);
             myWriter.close();
             System.out.printf("Successfully wrote to the file %s.lex.%n", fileName);
@@ -334,13 +334,12 @@ public class Lexer {
     }
 
     public static void main(String[] args) {
-        File[] files = new File("src/main/resources").listFiles(file -> !file.toString().endsWith(".lex") && !file.toString().endsWith(".par"));
+        File[] files = new File("src/test/resources").listFiles(file -> !file.toString().endsWith(".lex") && !file.toString().endsWith(".par"));
         Scanner s;
         String source = "";
         assert files != null;
         for(File file : files){
             try {
-//                System.out.println(file.toString());
                 s = new Scanner(file);
                 while (s.hasNext()) {
                     source += s.nextLine() + "\n";
