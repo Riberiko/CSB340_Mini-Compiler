@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7ac25b6-265d-43ed-8230-0c6749f7127e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/output/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/99bottles.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/99bottles.lex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/count.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/count.lex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fizzbuzz.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fizzbuzz.lex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hello.lex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hello.t" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/loop.lex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/loop.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/prime.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/prime.lex" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +66,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\GMD\Desktop\NewQuarter\CSB340_Mini-Compiler\src\main\resources" />
       <recent name="C:\Users\GMD\Desktop\NewQuarter\CSB340_Mini-Compiler\src\test\resources" />
       <recent name="C:\Users\GMD\Desktop\NewQuarter\CSB340_Mini-Compiler\src\main\testResources" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -90,7 +78,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ParserTest.countTest">
+  <component name="RunManager" selected="Application.Lexer">
     <configuration name="Lexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Lexer" />
       <module name="MiniCompiler.main" />
@@ -127,12 +115,11 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="ParserTest.bottleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MiniCompiler.test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ParserTest" />
-      <option name="METHOD_NAME" value="bottleTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -160,10 +147,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ParserTest.countTest" />
+        <item itemvalue="JUnit.ParserTest" />
         <item itemvalue="Application.Lexer" />
         <item itemvalue="Application.Parser" />
         <item itemvalue="JUnit.ParserTest.fizzbuzzTest" />
-        <item itemvalue="JUnit.ParserTest.bottleTest" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +165,7 @@
       <workItem from="1682560259027" duration="315000" />
       <workItem from="1683158997887" duration="5025000" />
       <workItem from="1684458191262" duration="17000" />
-      <workItem from="1685490452316" duration="2865000" />
+      <workItem from="1685490452316" duration="3650000" />
     </task>
     <servers />
   </component>

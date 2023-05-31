@@ -334,7 +334,7 @@ public class Lexer {
     }
 
     public static void main(String[] args) {
-        File[] files = new File("src/test/resources").listFiles(file -> !file.toString().endsWith(".lex") && !file.toString().endsWith(".par"));
+        File[] files = new File("src/main/resources").listFiles(file -> !file.toString().endsWith(".lex") && !file.toString().endsWith(".par"));
         Scanner s;
         String source = "";
         assert files != null;
